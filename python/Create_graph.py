@@ -1,3 +1,8 @@
+'''
+    Script to create some sample nodes and edges, purely for illustration purposes. Does not align with the
+    nodes, edges and properties in other scripts.
+'''
+
 from py2neo import Graph
 graph = Graph()
 from py2neo import Node, Relationship
