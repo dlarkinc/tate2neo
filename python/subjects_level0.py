@@ -1,20 +1,23 @@
+'''
+Import the top level in the subjects hierarchy. By default, this will be from the level0.json file.
+'''
 import json
-import os
+import sys
 
 from py2neo import Graph
-graph = Graph()
 from py2neo import Node
-from py2neo import watch
 
-watch("httpstream")
+graph = Graph()
 
-level0_f = "/home/larkin/Dropbox/DAH PhD/Neo4J/Metadata/tate/collection/processed/subjects/level0.json"
+level0_f = sys.argv[1]  # accept subjects level 0 json file from cli
+
+print level0_f
 
 subjects = json.loads(open(level0_f).read())
 
 for i in subjects.items():
-	print "Node: " + i[0] + "--" + i[1]
-	n = Node("Subject", id = i[0], name = i[1], level = 0)
-	graph.create(n)
+    print "Node: " + i[0] + "--" + i[1]
+    n = Node("Subject", id=i[0], name=i[1], level=0)
+    graph.create(n)
 
 
